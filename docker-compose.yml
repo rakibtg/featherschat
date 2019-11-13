@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    container_name: chatapp
+    environment:
+      POSTGRES_PASSWORD: chatapp
+      POSTGRES_USER: chatapp
+      POSTGRES_DB: chatapp
+    volumes:
+      - ./dbfiles:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    container_name: chatapp_database_manager
+    restart: always
+    ports:
+      - 6061:8080
+  web:
+    build: .
+    container_name: chatapp_backend
+    restart: always
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    ports:
+      - 6060:3030
