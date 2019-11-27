@@ -27,3 +27,15 @@ services:
       - db
     ports:
       - 6060:3030
+  server:
+    build: 
+      context: .
+      dockerfile: ngnix.dockerfile
+    restart: always
+    container_name: nginx_server
+    volumes:
+      - ./log-nginx:/var/log/nginx/
+    depends_on:
+      - web
+    ports:
+      - 6000:80
