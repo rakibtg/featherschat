@@ -5,6 +5,12 @@ const hostname = app.get('host');
 const port = app.get('port');
 const server = app.listen(port, hostname);
 
+function startChat (pools, rooms, servers) {
+  return {
+    pools, rooms, servers
+  }
+}
+
 process.on('unhandledRejection', (reason, p) =>
   logger.error('Unhandled Rejection at: Promise ', p, reason)
 );
