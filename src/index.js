@@ -11,6 +11,12 @@ function startChat (pools, rooms, servers) {
   }
 }
 
+function account (rooms, defaultChannel) {
+  return {
+    rooms, defaultChannel
+  }
+}
+
 process.on('unhandledRejection', (reason, p) =>
   logger.error('Unhandled Rejection at: Promise ', p, reason)
 );
